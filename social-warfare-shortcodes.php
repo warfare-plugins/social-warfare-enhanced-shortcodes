@@ -19,3 +19,12 @@ define( 'SWPS_VERSION' , '1.0.0' );
 define( 'SWPS_PLUGIN_FILE', __FILE__ );
 define( 'SWPS_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SWPS_PLUGIN_DIR', dirname( __FILE__ ) );
+
+/**
+ * Include the plugin's necessary functions files.
+ *
+ */
+add_action( 'plugins_loaded' , 'swps_initiate_plugin' , 25 );
+function swps_initiate_plugin() {
+
+}
