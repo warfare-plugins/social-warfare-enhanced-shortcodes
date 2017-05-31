@@ -28,3 +28,18 @@ add_action( 'plugins_loaded' , 'swps_initiate_plugin' , 25 );
 function swps_initiate_plugin() {
 
 }
+
+/**
+ * swps_post_twitter_shares() - A function to output the number of twitter shares on a given post.
+ *
+ * @since  1.0.0
+ * @param  array $atts An array of parameters parsed from the shortcode.
+ * @return string The number of twitter shares formatted accordingly
+ *
+ */
+add_shortcode( 'twitter_shares', 'swps_post_twitter_shares' );
+function swps_post_twitter_shares( $atts ) {
+	$shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
+	$shares = swp_kilomega( $shares );
+	return $shares;
+}
