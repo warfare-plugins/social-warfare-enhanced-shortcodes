@@ -30,10 +30,11 @@ define( 'SWPS_PLUGIN_DIR', dirname( __FILE__ ) );
  */
 add_shortcode( 'twitter_shares', 'swps_post_twitter_shares' );
 function swps_post_twitter_shares( $atts ) {
-    if(false = $shares){
-        return 0;
-    }else{
 	$shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
+    if( false == $shares ){
+        return 0;
+    } else {
+
 	$shares = swp_kilomega( $shares );
 	return $shares;
     }
