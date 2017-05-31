@@ -9,4 +9,4 @@
  * Text Domain: social-warfare
  */
 
-?>
+defined( 'WPINC' ) || die;
