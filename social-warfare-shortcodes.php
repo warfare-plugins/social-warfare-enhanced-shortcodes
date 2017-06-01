@@ -252,16 +252,16 @@ function swps_sitewide_googlePlus_shares( $atts ) {
    }
 
    /**
-    * swps_post_hacker_news_shares() - A function to output the number of buffer shares on a given post.
+    * swps_post_hacker_news_shares() - A function to output the number of hacker_news shares on a given post.
     *
     * @since  1.0.0
     * @param  array $atts An array of parameters parsed from the shortcode.
     * @return string The number of buffer shares formatted accordingly
     *
     */
-   add_shortcode( 'buffer_shares', 'swps_post_buffer_shares' );
-   function swps_post_buffer_shares( $atts ) {
-   $shares = get_post_meta( get_the_ID() , '_buffer_shares', true );
+   add_shortcode( 'hacker_news_shares', 'swps_post_hacker_news_shares' );
+   function swps_post_hacker_news_shares( $atts ) {
+   $shares = get_post_meta( get_the_ID() , '_hacker_news_shares', true );
        if( false == $shares ){
            return 0;
        } else {
