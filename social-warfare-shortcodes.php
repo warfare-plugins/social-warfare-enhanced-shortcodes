@@ -302,3 +302,17 @@ function swps_sitewide_googlePlus_shares( $atts ) {
      return $shares;
        }
    }
+
+   /**
+    * swps_sitewide_reddit_shares() - A function to output the total number of hacker_news shares sitewide.
+    *
+    * @param  array $atts An array of parameters parsed from the shortcode attributes
+    * @return string The total number of sitewide shares.
+    *
+    */
+   add_shortcode( 'sitewide_hacker_news_shares', 'swps_sitewide_hacker_news_shares()' );
+   function swps_sitewide_hacker_news_shares( $atts ) {
+    global $wpdb;
+    $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_hacker_news_shares'" );
+    return swp_kilomega( $sum[0]->total );
+   }
