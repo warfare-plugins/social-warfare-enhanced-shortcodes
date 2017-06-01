@@ -160,3 +160,13 @@ function swps_sitewide_googlePlus_shares( $atts ) {
  * @return string The number of linkedIn shares formatted accordingly
  *
  */
+ add_shortcode( 'linkedIn_shares', 'swps_post_linkedIn_shares' );
+ function swps_post_linkedIn_shares( $atts ) {
+ $shares = get_post_meta( get_the_ID() , '_linkedIn_shares', true );
+     if( false == $shares ){
+         return 0;
+     } else {
+ 	$shares = swp_kilomega( $shares );
+ 	return $shares;
+     }
+ }
