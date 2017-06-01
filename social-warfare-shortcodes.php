@@ -127,9 +127,9 @@ function swps_sitewide_pinterest_shares( $atts ) {
  * @return string The number of googlePlus shares formatted accordingly
  *
  */
-add_shortcode( 'twitter_shares', 'swps_post_twitter_shares' );
-function swps_post_twitter_shares( $atts ) {
-$shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
+add_shortcode( 'googlePlus_shares', 'swps_post_googlePlus_shares' );
+function swps_post_googlePlus_shares( $atts ) {
+$shares = get_post_meta( get_the_ID() , '_googlePlus_shares', true );
     if( false == $shares ){
         return 0;
     } else {
