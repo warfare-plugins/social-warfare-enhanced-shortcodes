@@ -145,9 +145,9 @@ $shares = get_post_meta( get_the_ID() , '_googlePlus_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_twitter_shares', 'swps_sitewide_twitter_shares()' );
-function swps_sitewide_twitter_shares( $atts ) {
+add_shortcode( 'sitewide_googlePlus_shares', 'swps_sitewide_googlePlus_shares()' );
+function swps_sitewide_googlePlus_shares( $atts ) {
 	global $wpdb;
-	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_twitter_shares'" );
+	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_googlePlus_shares'" );
 	return swp_kilomega( $sum[0]->total );
 }
