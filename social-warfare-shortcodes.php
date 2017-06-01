@@ -178,3 +178,9 @@ function swps_sitewide_googlePlus_shares( $atts ) {
   * @return string The total number of sitewide shares.
   *
   */
+  add_shortcode( 'sitewide_linkedIn_shares', 'swps_sitewide_linkedIn_shares()' );
+  function swps_sitewide_linkedIn_shares( $atts ) {
+  	global $wpdb;
+  	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_linkedIn_shares'" );
+  	return swp_kilomega( $sum[0]->total );
+  }
