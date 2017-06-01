@@ -193,9 +193,9 @@ function swps_sitewide_googlePlus_shares( $atts ) {
    * @return string The number of stumbleupon shares formatted accordingly
    *
    */
-  add_shortcode( 'twitter_shares', 'swps_post_twitter_shares' );
-  function swps_post_twitter_shares( $atts ) {
-  $shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
+  add_shortcode( 'stumbleupon_shares', 'swps_post_stumbleupon_shares' );
+  function swps_post_stumbleupon_shares( $atts ) {
+  $shares = get_post_meta( get_the_ID() , '_stumbleupon_shares', true );
       if( false == $shares ){
           return 0;
       } else {
