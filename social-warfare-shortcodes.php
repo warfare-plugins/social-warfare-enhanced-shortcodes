@@ -203,3 +203,11 @@ function swps_sitewide_googlePlus_shares( $atts ) {
   	return $shares;
       }
   }
+
+  /**
+   * swps_sitewide_stumbleupon_shares() - A function to output the total number of stumbleupon shares sitewide.
+   *
+   * @param  array $atts An array of parameters parsed from the shortcode attributes
+   * @return string The total number of sitewide shares.
+   *
+   */
