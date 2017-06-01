@@ -151,3 +151,12 @@ function swps_sitewide_googlePlus_shares( $atts ) {
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_googlePlus_shares'" );
 	return swp_kilomega( $sum[0]->total );
 }
+
+/**
+ * swps_post_linkedIn_shares() - A function to output the number of linkedIn shares on a given post.
+ *
+ * @since  1.0.0
+ * @param  array $atts An array of parameters parsed from the shortcode.
+ * @return string The number of linkedIn shares formatted accordingly
+ *
+ */
