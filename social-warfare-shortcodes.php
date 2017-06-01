@@ -85,3 +85,22 @@ function swps_sitewide_facebook_shares( $atts ) {
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_facebook_shares'" );
 	return swp_kilomega( $sum[0]->total );
 }
+
+/**
+ * swps_post_pinterest_shares() - A function to output the number of pinterest shares on a given post.
+ *
+ * @since  1.0.0
+ * @param  array $atts An array of parameters parsed from the shortcode.
+ * @return string The number of pinterest shares formatted accordingly
+ *
+ */
+add_shortcode( 'pinterest_shares', 'swps_post_pinterest_shares' );
+function swps_post_pinterest_shares( $atts ) {
+$shares = get_post_meta( get_the_ID() , '_pinterest_shares', true );
+    if( false == $shares ){
+        return 0;
+    } else {
+	$shares = swp_kilomega( $shares );
+	return $shares;
+    }
+}
