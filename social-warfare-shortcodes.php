@@ -318,16 +318,16 @@ function swps_sitewide_googlePlus_shares( $atts ) {
    }
 
    /**
-   * swps_post_tumblr_shares() - A function to output the number of reddit shares on a given post.
+   * swps_post_tumblr_shares() - A function to output the number of tumblr shares on a given post.
    *
    * @since  1.0.0
    * @param  array $atts An array of parameters parsed from the shortcode.
-   * @return string The number of reddit shares formatted accordingly
+   * @return string The number of tumblr shares formatted accordingly
    *
    */
-   add_shortcode( 'reddit_shares', 'swps_post_reddit_shares' );
-   function swps_post_reddit_shares( $atts ) {
-       $shares = get_post_meta( get_the_ID() , '_reddit_shares', true );
+   add_shortcode( 'tumblr_shares', 'swps_post_tumblr_shares' );
+   function swps_post_tumblr_shares( $atts ) {
+       $shares = get_post_meta( get_the_ID() , '_tumblr_shares', true );
        if( false == $shares ){
            return 0;
        } else {
