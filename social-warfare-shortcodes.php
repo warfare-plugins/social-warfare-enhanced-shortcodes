@@ -351,16 +351,16 @@ function swps_sitewide_googlePlus_shares( $atts ) {
    }
 
 /**
- * swps_post_yummly_shares() - A function to output the number of pinterest shares on a given post.
+ * swps_post_yummly_shares() - A function to output the number of yummly shares on a given post.
  *
  * @since  1.0.0
  * @param  array $atts An array of parameters parsed from the shortcode.
- * @return string The number of pinterest shares formatted accordingly
+ * @return string The number of yummly shares formatted accordingly
  *
  */
- add_shortcode( 'pinterest_shares', 'swps_post_pinterest_shares' );
- function swps_post_pinterest_shares( $atts ) {
-     $shares = get_post_meta( get_the_ID() , '_pinterest_shares', true );
+ add_shortcode( 'yummly_shares', 'swps_post_yummly_shares' );
+ function swps_post_yummly_shares( $atts ) {
+     $shares = get_post_meta( get_the_ID() , '_yummly_shares', true );
      if( false == $shares ){
          return 0;
      } else {
