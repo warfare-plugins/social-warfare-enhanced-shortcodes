@@ -80,6 +80,7 @@ $shares = get_post_meta( get_the_ID() , '_facebook_shares', true );
  *
  */
 add_shortcode( 'sitewide_facebook_shares', 'swps_sitewide_facebook_shares()' );
+echo "after shortcode added"
 function swps_sitewide_facebook_shares( $atts ) {
     echo "I am called."
 	global $wpdb;
