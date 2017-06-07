@@ -81,6 +81,7 @@ $shares = get_post_meta( get_the_ID() , '_facebook_shares', true );
  */
 add_shortcode( 'sitewide_facebook_shares', 'swps_sitewide_facebook_shares()' );
 function swps_sitewide_facebook_shares( $atts ) {
+    echo "I am called."
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_facebook_shares'" );
 	return swp_kilomega( $sum[0]->total );
