@@ -20,6 +20,11 @@ define( 'SWPS_PLUGIN_FILE', __FILE__ );
 define( 'SWPS_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SWPS_PLUGIN_DIR', dirname( __FILE__ ) );
 
+add_action( 'plugins_loaded' , 'swps_initiate_plugin' , 30 );
+function swps_initiate_plugin() {
+
+}
+
 /**
  * swps_post_twitter_shares() - A function to output the number of twitter shares on a given post.
  *
