@@ -422,7 +422,7 @@ function swps_sitewide_yummly_shares( $atts ) {
 require_once SWPP_PLUGIN_DIR . '/functions/update-checker/plugin-update-checker.php';
 $swpp_github_checker = swp_PucFactory::getLatestClassVersion('PucGitHubChecker');
 $swpp_update_checker = new $swpp_github_checker(
-    'https://github.com/warfare-plugins/social-warfare-pro/',
+    'https://github.com/warfare-plugins/social-warfare-shortcodes/',
     __FILE__,
     'master'
 );
