@@ -56,7 +56,7 @@ function swps_initiate_plugin() {
  * @since 2.0.0
  * @access public
  */
-require_once SWPS_VERSION_PLUGIN_DIR . '/update-checker/plugin-update-checker.php';
+require_once SWPS_PLUGIN_DIR . '/update-checker/plugin-update-checker.php';
 $swps_github_checker = swp_PucFactory::getLatestClassVersion('PucGitHubChecker');
 $swps_update_checker = new $swps_github_checker(
     'https://github.com/warfare-plugins/social-warfare-shortcodes/',
