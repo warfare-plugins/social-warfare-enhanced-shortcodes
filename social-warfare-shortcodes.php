@@ -412,3 +412,17 @@ function swps_sitewide_yummly_shares( $atts ) {
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_yummly_shares'" );
     return swp_kilomega( $sum[0]->total );
 }
+
+/**
+ * The Plugin Update checker
+ *
+ * @since 2.0.0
+ * @access public
+ */
+require_once SWPP_PLUGIN_DIR . '/functions/update-checker/plugin-update-checker.php';
+$swpp_github_checker = swp_PucFactory::getLatestClassVersion('PucGitHubChecker');
+$swpp_update_checker = new $swpp_github_checker(
+    'https://github.com/warfare-plugins/social-warfare-pro/',
+    __FILE__,
+    'master'
+);
