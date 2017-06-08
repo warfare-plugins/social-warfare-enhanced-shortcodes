@@ -7,7 +7,7 @@
  * Author:      Warfare Plugins
  * Author URI:  http://warfareplugins.com
  * Text Domain: social-warfare
- */
+*/
 
 defined( 'WPINC' ) || die;
 
@@ -46,7 +46,7 @@ $shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_twitter_shares', 'swps_sitewide_twitter_shares()' );
+add_shortcode( 'sitewide_twitter_shares', 'swps_sitewide_twitter_shares' );
 function swps_sitewide_twitter_shares( $atts ) {
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_twitter_shares'" );
@@ -79,10 +79,8 @@ $shares = get_post_meta( get_the_ID() , '_facebook_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_facebook_shares', 'swps_sitewide_facebook_shares()' );
-echo "after shortcode added"
+add_shortcode( 'sitewide_facebook_shares', 'swps_sitewide_facebook_shares' );
 function swps_sitewide_facebook_shares( $atts ) {
-    echo "I am called."
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_facebook_shares'" );
 	return swp_kilomega( $sum[0]->total );
@@ -114,7 +112,7 @@ function swps_post_pinterest_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_pinterest_shares', 'swps_sitewide_pinterest_shares()' );
+add_shortcode( 'sitewide_pinterest_shares', 'swps_sitewide_pinterest_shares' );
 function swps_sitewide_pinterest_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key '_pinterest_shares'" );
@@ -147,7 +145,7 @@ $shares = get_post_meta( get_the_ID() , '_googlePlus_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_googlePlus_shares', 'swps_sitewide_googlePlus_shares()' );
+add_shortcode( 'sitewide_googlePlus_shares', 'swps_sitewide_googlePlus_shares' );
 function swps_sitewide_googlePlus_shares( $atts ) {
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_googlePlus_shares'" );
@@ -180,7 +178,7 @@ function swps_post_linkedIn_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_linkedIn_shares', 'swps_sitewide_linkedIn_shares()' );
+add_shortcode( 'sitewide_linkedIn_shares', 'swps_sitewide_linkedIn_shares' );
 function swps_sitewide_linkedIn_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_linkedIn_shares'" );
@@ -213,7 +211,7 @@ function swps_post_stumbleupon_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_stumbleupon_shares', 'swps_sitewide_stumbleupon_shares()' );
+add_shortcode( 'sitewide_stumbleupon_shares', 'swps_sitewide_stumbleupon_shares' );
 function swps_sitewide_stumbleupon_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_stumbleupon_shares'" );
@@ -246,7 +244,7 @@ function swps_post_buffer_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_buffer_shares', 'swps_sitewide_buffer_shares()' );
+add_shortcode( 'sitewide_buffer_shares', 'swps_sitewide_buffer_shares' );
 function swps_sitewide_buffer_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_buffer_shares'" );
@@ -279,7 +277,7 @@ function swps_post_hacker_news_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_hacker_news_shares', 'swps_sitewide_hacker_news_shares()' );
+add_shortcode( 'sitewide_hacker_news_shares', 'swps_sitewide_hacker_news_shares' );
 function swps_sitewide_hacker_news_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_hacker_news_shares'" );
@@ -312,7 +310,7 @@ function swps_post_reddit_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_reddit_shares', 'swps_sitewide_reddit_shares()' );
+add_shortcode( 'sitewide_reddit_shares', 'swps_sitewide_reddit_shares' );
 function swps_sitewide_reddit_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_reddit_shares'" );
@@ -345,7 +343,7 @@ function swps_post_tumblr_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-   add_shortcode( 'sitewide_tumblr_shares', 'swps_sitewide_tumblr_shares()' );
+   add_shortcode( 'sitewide_tumblr_shares', 'swps_sitewide_tumblr_shares' );
    function swps_sitewide_tumblr_shares( $atts ) {
    	global $wpdb;
    	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_tumblr_shares'" );
@@ -369,4 +367,18 @@ function swps_post_yummly_shares( $atts ) {
         $shares = swp_kilomega( $shares );
         return $shares;
     }
+}
+
+/**
+ * swps_sitewide_yummly_shares() - A function to output the total number of tumblr shares sitewide.
+ *
+ * @param  array $atts An array of parameters parsed from the shortcode attributes
+ * @return string The total number of sitewide shares.
+ *
+ */
+add_shortcode( 'sitewide_yummly_shares', 'swps_sitewide_yummly_shares' );
+function swps_sitewide_yummly_shares( $atts ) {
+    global $wpdb;
+    $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_yummly_shares'" );
+    return swp_kilomega( $sum[0]->total );
 }

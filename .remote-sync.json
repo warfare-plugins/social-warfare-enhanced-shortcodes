@@ -1,15 +1,15 @@
 {
-  "uploadOnSave": true,
+  "uploadOnSave": false,
   "useAtomicWrites": false,
   "deleteLocal": false,
   "hostname": "98.142.108.138",
-  "target": "/public_html/beta2/wp-content/plugins/social-warfare-shortcodes/",
   "ignore": [
     ".remote-sync.json",
     ".git/**"
   ],
-  "username": "warfarep",
-  "password": "%24FjQ@j23TY",
+  "username": "idelle",
+  "password": "W3uke-+2ucHA",
   "watch": [],
-  "transport": "scp"
+  "transport": "ftp",
+  "target": "/wp-content/plugins/social-warfare-shortcodes/"
 }
