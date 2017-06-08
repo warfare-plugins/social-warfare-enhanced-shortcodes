@@ -22,7 +22,23 @@ define( 'SWPS_PLUGIN_DIR', dirname( __FILE__ ) );
 
 add_action( 'plugins_loaded' , 'swps_initiate_plugin' , 30 );
 function swps_initiate_plugin() {
-
+    if(defined('SWP_VERSION')){
+        add_shortcode( 'twitter_shares', 'swps_post_twitter_shares' );
+        add_shortcode( 'sitewide_twitter_shares', 'swps_sitewide_twitter_shares' );
+        add_shortcode( 'facebook_shares', 'swps_post_facebook_shares' );
+        add_shortcode( 'sitewide_facebook_shares', 'swps_sitewide_facebook_shares' );
+        add_shortcode( 'pinterest_shares', 'swps_post_pinterest_shares' );
+        add_shortcode( 'sitewide_pinterest_shares', 'swps_sitewide_pinterest_shares' );
+        add_shortcode( 'googlePlus_shares', 'swps_post_googlePlus_shares' );
+        add_shortcode( 'sitewide_googlePlus_shares', 'swps_sitewide_googlePlus_shares' );
+        add_shortcode( 'linkedIn_shares', 'swps_post_linkedIn_shares' );
+        add_shortcode( 'sitewide_linkedIn_shares', 'swps_sitewide_linkedIn_shares' );
+        add_shortcode( 'stumbleupon_shares', 'swps_post_stumbleupon_shares' );
+        add_shortcode( 'sitewide_stumbleupon_shares', 'swps_sitewide_stumbleupon_shares' );
+    }
+    if(defined('SWPP_VERSION')){
+        add_shortcode( 'buffer_shares', 'swps_post_buffer_shares' );
+    }
 }
 
 /**
@@ -33,7 +49,7 @@ function swps_initiate_plugin() {
  * @return string The number of twitter shares formatted accordingly
  *
  */
-add_shortcode( 'twitter_shares', 'swps_post_twitter_shares' );
+
 function swps_post_twitter_shares( $atts ) {
 $shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
     if( false == $shares ){
@@ -51,7 +67,7 @@ $shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_twitter_shares', 'swps_sitewide_twitter_shares' );
+
 function swps_sitewide_twitter_shares( $atts ) {
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_twitter_shares'" );
@@ -66,7 +82,7 @@ function swps_sitewide_twitter_shares( $atts ) {
  * @return string The number of facebook shares formatted accordingly
  *
  */
-add_shortcode( 'facebook_shares', 'swps_post_facebook_shares' );
+
 function swps_post_facebook_shares( $atts ) {
 $shares = get_post_meta( get_the_ID() , '_facebook_shares', true );
     if( false == $shares ){
@@ -84,7 +100,7 @@ $shares = get_post_meta( get_the_ID() , '_facebook_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_facebook_shares', 'swps_sitewide_facebook_shares' );
+
 function swps_sitewide_facebook_shares( $atts ) {
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_facebook_shares'" );
@@ -99,7 +115,7 @@ function swps_sitewide_facebook_shares( $atts ) {
  * @return string The number of pinterest shares formatted accordingly
  *
  */
-add_shortcode( 'pinterest_shares', 'swps_post_pinterest_shares' );
+
 function swps_post_pinterest_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_pinterest_shares', true );
     if( false == $shares ){
@@ -117,7 +133,7 @@ function swps_post_pinterest_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_pinterest_shares', 'swps_sitewide_pinterest_shares' );
+
 function swps_sitewide_pinterest_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key '_pinterest_shares'" );
@@ -132,7 +148,7 @@ function swps_sitewide_pinterest_shares( $atts ) {
  * @return string The number of googlePlus shares formatted accordingly
  *
  */
-add_shortcode( 'googlePlus_shares', 'swps_post_googlePlus_shares' );
+
 function swps_post_googlePlus_shares( $atts ) {
 $shares = get_post_meta( get_the_ID() , '_googlePlus_shares', true );
     if( false == $shares ){
@@ -150,7 +166,7 @@ $shares = get_post_meta( get_the_ID() , '_googlePlus_shares', true );
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_googlePlus_shares', 'swps_sitewide_googlePlus_shares' );
+
 function swps_sitewide_googlePlus_shares( $atts ) {
 	global $wpdb;
 	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_googlePlus_shares'" );
@@ -165,7 +181,7 @@ function swps_sitewide_googlePlus_shares( $atts ) {
  * @return string The number of linkedIn shares formatted accordingly
  *
  */
-add_shortcode( 'linkedIn_shares', 'swps_post_linkedIn_shares' );
+
 function swps_post_linkedIn_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_linkedIn_shares', true );
     if( false == $shares ){
@@ -183,7 +199,7 @@ function swps_post_linkedIn_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_linkedIn_shares', 'swps_sitewide_linkedIn_shares' );
+
 function swps_sitewide_linkedIn_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_linkedIn_shares'" );
@@ -198,7 +214,7 @@ function swps_sitewide_linkedIn_shares( $atts ) {
  * @return string The number of stumbleupon shares formatted accordingly
  *
  */
-add_shortcode( 'stumbleupon_shares', 'swps_post_stumbleupon_shares' );
+
 function swps_post_stumbleupon_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_stumbleupon_shares', true );
     if( false == $shares ){
@@ -216,7 +232,7 @@ function swps_post_stumbleupon_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_stumbleupon_shares', 'swps_sitewide_stumbleupon_shares' );
+
 function swps_sitewide_stumbleupon_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_stumbleupon_shares'" );
@@ -231,7 +247,7 @@ function swps_sitewide_stumbleupon_shares( $atts ) {
  * @return string The number of buffer shares formatted accordingly
  *
  */
-add_shortcode( 'buffer_shares', 'swps_post_buffer_shares' );
+
 function swps_post_buffer_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_buffer_shares', true );
     if( false == $shares ){
