@@ -38,6 +38,15 @@ function swps_initiate_plugin() {
     }
     if(defined('SWPP_VERSION')){
         add_shortcode( 'buffer_shares', 'swps_post_buffer_shares' );
+        add_shortcode( 'sitewide_buffer_shares', 'swps_sitewide_buffer_shares' );
+        add_shortcode( 'hacker_news_shares', 'swps_post_hacker_news_shares' );
+        add_shortcode( 'sitewide_hacker_news_shares', 'swps_sitewide_hacker_news_shares' );
+        add_shortcode( 'reddit_shares', 'swps_post_reddit_shares' );
+        add_shortcode( 'sitewide_reddit_shares', 'swps_sitewide_reddit_shares' );
+        add_shortcode( 'tumblr_shares', 'swps_post_tumblr_shares' );
+        add_shortcode( 'sitewide_tumblr_shares', 'swps_sitewide_tumblr_shares' );
+        add_shortcode( 'yummly_shares', 'swps_post_yummly_shares' );
+        add_shortcode( 'sitewide_yummly_shares', 'swps_sitewide_yummly_shares' );
     }
 }
 
@@ -265,7 +274,7 @@ function swps_post_buffer_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_buffer_shares', 'swps_sitewide_buffer_shares' );
+
 function swps_sitewide_buffer_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_buffer_shares'" );
@@ -280,7 +289,7 @@ function swps_sitewide_buffer_shares( $atts ) {
  * @return string The number of buffer shares formatted accordingly
  *
  */
-add_shortcode( 'hacker_news_shares', 'swps_post_hacker_news_shares' );
+
 function swps_post_hacker_news_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_hacker_news_shares', true );
     if( false == $shares ){
@@ -298,7 +307,7 @@ function swps_post_hacker_news_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_hacker_news_shares', 'swps_sitewide_hacker_news_shares' );
+
 function swps_sitewide_hacker_news_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_hacker_news_shares'" );
@@ -313,7 +322,7 @@ function swps_sitewide_hacker_news_shares( $atts ) {
  * @return string The number of reddit shares formatted accordingly
  *
  */
-add_shortcode( 'reddit_shares', 'swps_post_reddit_shares' );
+
 function swps_post_reddit_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_reddit_shares', true );
     if( false == $shares ){
@@ -331,7 +340,7 @@ function swps_post_reddit_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_reddit_shares', 'swps_sitewide_reddit_shares' );
+
 function swps_sitewide_reddit_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_reddit_shares'" );
@@ -346,7 +355,7 @@ function swps_sitewide_reddit_shares( $atts ) {
  * @return string The number of tumblr shares formatted accordingly
  *
  */
-add_shortcode( 'tumblr_shares', 'swps_post_tumblr_shares' );
+
 function swps_post_tumblr_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_tumblr_shares', true );
     if( false == $shares ){
@@ -364,7 +373,7 @@ function swps_post_tumblr_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-   add_shortcode( 'sitewide_tumblr_shares', 'swps_sitewide_tumblr_shares' );
+
    function swps_sitewide_tumblr_shares( $atts ) {
    	global $wpdb;
    	$sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_tumblr_shares'" );
@@ -379,7 +388,7 @@ function swps_post_tumblr_shares( $atts ) {
  * @return string The number of yummly shares formatted accordingly
  *
  */
-add_shortcode( 'yummly_shares', 'swps_post_yummly_shares' );
+
 function swps_post_yummly_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_yummly_shares', true );
     if( false == $shares ){
@@ -397,7 +406,7 @@ function swps_post_yummly_shares( $atts ) {
  * @return string The total number of sitewide shares.
  *
  */
-add_shortcode( 'sitewide_yummly_shares', 'swps_sitewide_yummly_shares' );
+
 function swps_sitewide_yummly_shares( $atts ) {
     global $wpdb;
     $sum = $wpdb->get_results( "SELECT SUM(meta_value) AS total FROM $wpdb->postmeta WHERE meta_key = '_yummly_shares'" );
