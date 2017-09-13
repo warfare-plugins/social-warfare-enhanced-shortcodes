@@ -20,7 +20,7 @@ define( 'SWPS_PLUGIN_FILE', __FILE__ );
 define( 'SWPS_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SWPS_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'SWPS_CORE_VERSION_REQUIRED' , '2.3.2' );
-define( 'SWPS_ITEM_ID' , 999 );
+define( 'SWPS_ITEM_ID' , 114492 );
 
 add_action( 'plugins_loaded' , 'swps_initiate_plugin' , 30 );
 function swps_initiate_plugin() {
