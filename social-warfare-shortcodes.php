@@ -51,20 +51,6 @@ function swps_initiate_plugin() {
 }
 
 /**
- * The Plugin Update checker
- *
- * @since 2.0.0
- * @access public
- */
-require_once SWPS_PLUGIN_DIR . '/update-checker/plugin-update-checker.php';
-$swps_github_checker = swp_PucFactory::getLatestClassVersion('PucGitHubChecker');
-$swps_update_checker = new $swpp_github_checker(
-    'https://github.com/warfare-plugins/social-warfare-shortcodes/',
-    __FILE__,
-    'master'
-);
-
-/**
  * swps_post_twitter_shares() - A function to output the number of twitter shares on a given post.
  *
  * @since  1.0.0
