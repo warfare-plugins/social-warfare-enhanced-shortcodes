@@ -19,6 +19,8 @@ define( 'SWPS_VERSION' , '1.0.0' );
 define( 'SWPS_PLUGIN_FILE', __FILE__ );
 define( 'SWPS_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SWPS_PLUGIN_DIR', dirname( __FILE__ ) );
+define( 'SWPS_CORE_VERSION_REQUIRED' , '2.3.2' );
+define( 'SWPS_ITEM_ID' , 999 );
 
 add_action( 'plugins_loaded' , 'swps_initiate_plugin' , 30 );
 function swps_initiate_plugin() {
@@ -49,6 +51,43 @@ function swps_initiate_plugin() {
         add_shortcode( 'sitewide_yummly_shares', 'swps_sitewide_yummly_shares' );
     }
 }
+
+/**
+ * The Plugin Update Checker
+ *
+ *
+ * @since 2.0.0 | Created | Update checker added when the plugin was split into core and pro.
+ * @since 2.3.3 | 13 SEP 2017 | Updated to use EDD's update checker built into core.
+ * @access public
+ *
+ */
+add_action( 'plugins_loaded' , 'swps_update_checker' , 20 );
+function swps_update_checker() {
+
+    // Make sure core is on a version that contains our dependancies
+    if (defined('SWP_VERSION') && version_compare(SWP_VERSION , SWPS_CORE_VERSION_REQUIRED) >= 0){
+
+        // Check if the plugin is registered
+        if( is_swp_addon_registered( 'shortcodes' ) ) {
+
+            // retrieve our license key from the DB
+            $license_key = swp_get_license_key('shortcodes');
+            $website_url = swp_get_site_url();
+
+            // setup the updater
+            $swed_updater = new SW_EDD_SL_Plugin_Updater( SWP_STORE_URL , __FILE__ , array(
+            	'version'   => SWPS_VERSION,		// current version number
+            	'license'   => $license_key,	// license key
+            	'item_id'   => SWPS_ITEM_ID,	// id of this plugin
+            	'author'    => 'Warfare Plugins',	// author of this plugin
+            	'url'       => $website_url,
+                'beta'      => false // set to true if you wish customers to receive update notifications of beta releases
+                )
+            );
+        }
+    }
+}
+
 
 /**
  * swps_post_twitter_shares() - A function to output the number of twitter shares on a given post.
