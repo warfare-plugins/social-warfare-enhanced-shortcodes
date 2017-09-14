@@ -22,6 +22,67 @@ define( 'SWES_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'SWES_CORE_VERSION_REQUIRED' , '2.3.2' );
 define( 'SWES_ITEM_ID' , 114492 );
 
+/**
+ * Add a registration key for the registration functions
+ *
+ * @param Array An array of registrations for each paid addon
+ * @return Array An array modified to add this new registration key
+ *
+ */
+add_filter('swp_registrations' , 'social_warfare_enhanced_shortcodes_registration_key' , 20);
+function social_warfare_enhanced_shortcodes_registration_key($array) {
+
+    // Make sure core is on a version that contains our dependancies
+    if (defined('SWP_VERSION') && version_compare(SWP_VERSION , SWAD_CORE_VERSION_REQUIRED) >= 0){
+
+        // Add this plugin to the registrations array
+        $array['enhanced_shortcodes'] = array(
+            'plugin_name' => 'Social Warfare - Enhanced Shortcodes',
+            'key' => 'enhanced_shortcodes',
+            'product_id' => SWAD_ITEM_ID
+        );
+    }
+
+    // Return the modified or unmodified array
+    return $array;
+}
+
+/**
+ * The Plugin Update Checker
+ *
+ *
+ * @since 2.0.0 | Created | Update checker added when the plugin was split into core and pro.
+ * @since 2.3.3 | 13 SEP 2017 | Updated to use EDD's update checker built into core.
+ * @access public
+ *
+ */
+add_action( 'plugins_loaded' , 'swes_update_checker' , 20 );
+function swes_update_checker() {
+
+    // Make sure core is on a version that contains our dependancies
+    if (defined('SWP_VERSION') && version_compare(SWP_VERSION , SWES_CORE_VERSION_REQUIRED) >= 0){
+
+        // Check if the plugin is registered
+        if( is_swp_addon_registered( 'enhanced_shortcodes' ) ) {
+
+            // retrieve our license key from the DB
+            $license_key = swp_get_license_key('enhanced_shortcodes');
+            $website_url = swp_get_site_url();
+
+            // setup the updater
+            $swed_updater = new SW_EDD_SL_Plugin_Updater( SWP_STORE_URL , __FILE__ , array(
+            	'version'   => SWES_VERSION,		// current version number
+            	'license'   => $license_key,	// license key
+            	'item_id'   => SWES_ITEM_ID,	// id of this plugin
+            	'author'    => 'Warfare Plugins',	// author of this plugin
+            	'url'       => $website_url,
+                'beta'      => false // set to true if you wish customers to receive update notifications of beta releases
+                )
+            );
+        }
+    }
+}
+
 add_action( 'plugins_loaded' , 'swes_initiate_plugin' , 30 );
 function swes_initiate_plugin() {
     if(defined('SWP_VERSION')){
@@ -53,43 +114,6 @@ function swes_initiate_plugin() {
 }
 
 /**
- * The Plugin Update Checker
- *
- *
- * @since 2.0.0 | Created | Update checker added when the plugin was split into core and pro.
- * @since 2.3.3 | 13 SEP 2017 | Updated to use EDD's update checker built into core.
- * @access public
- *
- */
-add_action( 'plugins_loaded' , 'swes_update_checker' , 20 );
-function swes_update_checker() {
-
-    // Make sure core is on a version that contains our dependancies
-    if (defined('SWP_VERSION') && version_compare(SWP_VERSION , SWES_CORE_VERSION_REQUIRED) >= 0){
-
-        // Check if the plugin is registered
-        if( is_swp_addon_registered( 'shortcodes' ) ) {
-
-            // retrieve our license key from the DB
-            $license_key = swp_get_license_key('shortcodes');
-            $website_url = swp_get_site_url();
-
-            // setup the updater
-            $swed_updater = new SW_EDD_SL_Plugin_Updater( SWP_STORE_URL , __FILE__ , array(
-            	'version'   => SWES_VERSION,		// current version number
-            	'license'   => $license_key,	// license key
-            	'item_id'   => SWES_ITEM_ID,	// id of this plugin
-            	'author'    => 'Warfare Plugins',	// author of this plugin
-            	'url'       => $website_url,
-                'beta'      => false // set to true if you wish customers to receive update notifications of beta releases
-                )
-            );
-        }
-    }
-}
-
-
-/**
  * swes_post_twitter_shares() - A function to output the number of twitter shares on a given post.
  *
  * @since  1.0.0
@@ -97,7 +121,6 @@ function swes_update_checker() {
  * @return string The number of twitter shares formatted accordingly
  *
  */
-
 function swes_post_twitter_shares( $atts ) {
     $shares = get_post_meta( get_the_ID() , '_twitter_shares', true );
     if( false == $shares ){
