@@ -21,6 +21,10 @@ define( 'SWES_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SWES_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'SWES_CORE_VERSION_REQUIRED' , '2.3.2' );
 define( 'SWES_ITEM_ID' , 114492 );
+if ( !defined( 'SWP_ACTIVATE_REGISTRATION_TAB' )) :
+    define( 'SWP_ACTIVATE_REGISTRATION_TAB', true );
+endif;
+
 
 /**
  * Add a registration key for the registration functions
