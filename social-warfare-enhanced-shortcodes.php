@@ -14,13 +14,14 @@ defined( 'WPINC' ) || die;
 add_action( 'plugins_loaded', function() {
     class Social_Warfare_Enhanced_Shortcodes extends SWP_Addon {
         public function __construct() {
+            parent::__construct();
             $this->name = __( 'Social Warfare - Enhanced Shortcodes', 'social-warfare' );
             $this->key = 'enhanced_shortcodes';
             $this->product_id = 114492;
             $this->version = '1.0.0';
             $this->core_required = '3.0.0';
 
-            if ( $this->is_registerd() ) {
+            if ( $this->is_registered() ) {
                 if (version_compare($this->core_version, $this->core_required) >= 0 ) {
                     if ( false === get_option( 'social_warfare_enhanced_shortcode', false) ) {
                         $this->init_database();
@@ -39,11 +40,11 @@ add_action( 'plugins_loaded', function() {
                 //* We can't pass an argument to the callback, so save it as an object property.
                 $this->network_key = "${$network}_shares";
 
-                add_shortcode( "${network}_shares", [ $this, 'display_post_shares' ]);
-                add_shortcode( "sitewide_${network}_shares", [ $this, 'display_sitewide_shares' ]);
+                add_shortcode( "${network}_shares", [ $this, 'display_post_shares' ] );
+                add_shortcode( "sitewide_${network}_shares", [ $this, 'display_sitewide_shares' ] );
             }
 
-            unset $this->network_key;
+            unset($this->network_key);
         }
 
         public function display_sitewide_shares() {
@@ -142,5 +143,6 @@ add_action( 'plugins_loaded', function() {
         }
     }
 
-    new Social_Warfare_Enhanced_Shortcodes();
+    $addon = new Social_Warfare_Enhanced_Shortcodes();
+    add_filter( 'swp_registrations', [$addon, 'add_self'] );
 });
