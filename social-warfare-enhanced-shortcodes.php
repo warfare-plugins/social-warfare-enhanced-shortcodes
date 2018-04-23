@@ -11,7 +11,9 @@
 
 defined( 'WPINC' ) || die;
 
-add_action( 'plugins_loaded', function() {
+add_action( 'plugins_loaded', 'Social_Warfare_Enhanced_Shortcodes', 20 );
+
+function Social_Warfare_Enhanced_Shortcodes() {
     class Social_Warfare_Enhanced_Shortcodes extends SWP_Addon {
         public function __construct() {
             parent::__construct();
@@ -145,4 +147,4 @@ add_action( 'plugins_loaded', function() {
 
     $addon = new Social_Warfare_Enhanced_Shortcodes();
     add_filter( 'swp_registrations', [$addon, 'add_self'] );
-});
+}
