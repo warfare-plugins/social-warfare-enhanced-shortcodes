@@ -8,6 +8,10 @@ class Social_Warfare_Enhanced_Shortcodes extends SWP_Addon {
         $this->version = '1.0.0';
         $this->core_required = '3.0.0';
 
+        add_filter( 'the_content', [$this, 'apply_addon'] );
+    }
+
+    public function apply_addon($the_content) {
         if ( $this->is_registered() ) {
             if (version_compare($this->core_version, $this->core_required) >= 0 ) {
                 if ( false === get_option( 'social_warfare_enhanced_shortcode', false) ) {
@@ -18,9 +22,12 @@ class Social_Warfare_Enhanced_Shortcodes extends SWP_Addon {
                 throw( "This addon requires Social Warfare version " . $this->core_required . " or higher. Please update our core plugin before activating this one." );
             }
         }
+
+        return $the_content;
     }
 
     public function add_shortcodes() {
+        return;
         global $swp_social_networks;
 
         foreach($swp_social_networks as $network_key => $object ) {
@@ -31,6 +38,7 @@ class Social_Warfare_Enhanced_Shortcodes extends SWP_Addon {
             add_shortcode( "sitewide_${network}_shares", [ $this, 'display_sitewide_shares' ] );
         }
 
+        //* Always clean up after yourself!
         unset($this->network_key);
     }
 
